@@ -1,0 +1,346 @@
+/* Space Age Layout System */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  position: relative;
+}
+
+/* Glassmorphism Surfaces */
+.surface {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.surface::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+}
+
+.surface.hoverable {
+  cursor: pointer;
+}
+
+.surface.hoverable:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-glow), var(--glass-shadow);
+  border-color: var(--color-accent);
+}
+
+.surface.hoverable:hover::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent),
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface {
+    transition: none;
+  }
+  .surface.hoverable:hover {
+    transform: none;
+  }
+}
+
+/* Modern Stack System */
+.stack {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.stack-sm {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.stack-md {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.stack-lg {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.stack-xl {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+/* Advanced Grid System */
+.grid-responsive {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.col-12 {
+  grid-column: span 12;
+}
+.col-6 {
+  grid-column: span 6;
+}
+.col-4 {
+  grid-column: span 4;
+}
+.col-3 {
+  grid-column: span 3;
+}
+
+@media (min-width: 640px) {
+  .col-sm-6 {
+    grid-column: span 6;
+  }
+  .col-sm-4 {
+    grid-column: span 4;
+  }
+  .col-sm-3 {
+    grid-column: span 3;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-md-4 {
+    grid-column: span 4;
+  }
+  .col-md-8 {
+    grid-column: span 8;
+  }
+  .col-md-6 {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 1024px) {
+  .col-lg-3 {
+    grid-column: span 3;
+  }
+  .col-lg-4 {
+    grid-column: span 4;
+  }
+  .col-lg-6 {
+    grid-column: span 6;
+  }
+}
+
+/* Modern Typography */
+.heading {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  position: relative;
+}
+
+.heading.large {
+  font-size: clamp(1.875rem, 4vw, 2.5rem);
+  font-weight: 800;
+}
+
+.heading.small {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 600;
+}
+
+/* Animated Underline */
+.underline-anim {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-anim::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 3px;
+  width: 100%;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.underline-anim:hover::after {
+  transform: scaleX(1);
+}
+
+/* Modern Muted Text */
+.muted {
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+/* Space Age Tags */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  border: 1px solid var(--glass-border);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-2xl);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-fg);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-surface);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.tag:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.tag:hover::before {
+  left: 0;
+}
+
+.tag.active {
+  background: var(--gradient-accent);
+  border-color: transparent;
+  color: white;
+}
+
+/* Enhanced Skeleton Loading */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.sk-line {
+  height: 12px;
+  background: var(--glass-bg);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.sk-gap {
+  height: var(--space-sm);
+}
+
+/* Enhanced Focus Glow */
+.focus-glow {
+  animation: focusPulse 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes focusPulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-accent-glow);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 8px var(--color-accent-glow);
+    transform: scale(1.02);
+  }
+  100% {
+    box-shadow: 0 0 0 0 var(--color-accent-glow);
+    transform: scale(1);
+  }
+}
+
+/* Floating Elements */
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+  padding: var(--space-lg);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow), var(--glass-shadow);
+}
